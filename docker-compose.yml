@@ -1,0 +1,15 @@
+version: "3"
+services:
+  # nextjs service name below MUST MATCH nginx/default.conf name there
+  nextjs:
+    build: ./
+    # Note :: All requests must go through NGINX so no need to expose any port
+    # at nextjs service
+
+  nginx:
+    build: ./nginx
+
+    # Let’s publish port ":8080" to port 80 inside the container for the world 
+    # to access it. Locally here :: http://localhost:8080/
+    ports:
+      - 8080:80
